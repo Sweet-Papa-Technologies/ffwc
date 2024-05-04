@@ -16,6 +16,7 @@ export const loadPlayData = async (): Promise<PlayerStats> => {
   // TODO=> Load game data from the server
   const playerDatas = PlayerStatas
 
+
   if (store.userData) {
     playerDatas.userData = store.userData
   }
@@ -31,7 +32,16 @@ export const loadPlayData = async (): Promise<PlayerStats> => {
 
 export const loadPlayerPrefsFromServer = async ():Promise<PlayerPreferences> => {
   // TODO=> Load game data from the server
-  return playerPrefs
+  const prefs = playerPrefs
+
+  // Set Toggle Mode and Difficulty
+  if (store.$state.toggleDifficulty && store.$state.toggleMode) {
+    prefs.mode = store.$state.toggleMode
+    prefs.difficulty = store.$state.toggleDifficulty
+  }
+
+  console.log(prefs)
+  return prefs
 }
 
 function loadQuestionsByDiff(difficulty:diffSettings, questions:WordChallenge[]): WordChallenge[] {
@@ -125,7 +135,7 @@ export const loadGameQuestionsForSession = async (mode:modes=null,difficulty:dif
   return currentGameSession
 }
 
-export const loadCatSummary = (cat:gameCats|null): GameCategory => {
+export const loadCatSummary = (cat:gameCats|null|undefined): GameCategory => {
   // TODO=> Load game data from the server
 
   let desc = "Mode Failed to Load Correctly"

@@ -3,8 +3,8 @@
     <div>
       <div class="text-h3 q-my-md">Welcome!</div>
     <q-btn class="full-width q-my-md" color="primary" label="Start Game" @click="startGame" />
-    <q-btn disabled class="full-width q-my-md" color="secondary" label="Word Vault" @click="openWordVault" />
-    <q-btn disabled class="full-width q-my-md" color="dark" label="Settings" @click="openSettings" />
+    <!-- <q-btn disabled class="full-width q-my-md" color="secondary" label="Word Vault" @click="openWordVault" /> -->
+    <q-btn  class="full-width q-my-md" color="dark" label="Settings" @click="openSettings" />
     </div>
 
   </q-page>
@@ -46,4 +46,3 @@ export default defineComponent({
   }
 });
 </script>
-../ts/loadData

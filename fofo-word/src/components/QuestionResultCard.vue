@@ -9,12 +9,19 @@
         icon="done"
         :actions="[{ label: 'Close', color: 'white', handler: () => { $emit('next') } }]"
       >
-        <div class="q-mr-sm">{{  correct === true ? "Correct!" : "Sorry, Incorrect!" }}</div>
-        <div class="text-h6">{{  correct === true ? "Good job, you got it correct!" : "Sorry, the correct answer was:!" }}</div>
-        <div v-if="correct !== true">The correct answer was: {{ correctAnswer || "not found - error" }}</div>
+
+        <q-card-section class="row justify-center q-gutter-sm items-center q-mb-md">
+          <q-icon :name="correct === true ? 'fas fa-smile' : 'fas fa-frown'" size="2em" :color="correct === true ? 'positive' : 'negative'" />
+        <div class="q-mr-sm text-h4 ">{{  correct === true ? "Correct!" : "Incorrect!" }}</div>
+        </q-card-section>
+
+        <div class="text-h6 text-center">{{  correct === true ? "Good job, you got it correct!" : "Sorry, wrong answer!" }}</div>
+        <div class="text-center" v-if="correct !== true">The correct answer was:</div>
+        <div class="text-bold text-h5 text-center q-mt-lg q-px-md" v-if="correct !== true">{{ correctAnswer || "not found - error" }}</div>
+
       </q-banner>
     </q-card-section>
-    <q-card-section>
+    <q-card-section class="row justify-center">
       <q-btn
         color="primary"
         label="Next Question"

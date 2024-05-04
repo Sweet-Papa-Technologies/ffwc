@@ -3,6 +3,8 @@ import { PlayerPreferences, PlayerStats, currentGameSession, userData } from 'sr
 
 export const useSessionStore = defineStore('session-store', {
   state: () => ({
+    toggleMode: null as PlayerPreferences["mode"] | null,
+    toggleDifficulty: null as PlayerPreferences["difficulty"] | null,
     userData: {} as userData | null,
     playerData: {} as PlayerStats| null,
     prefs: {} as PlayerPreferences | null,
@@ -23,6 +25,29 @@ export const useSessionStore = defineStore('session-store', {
   }),
 
   actions: {
+    endGame() {
+      const currentGame = this.currentGame
+      if (currentGame) {
+        currentGame.bCompleted = false
+        currentGame.bStarted = false
+        currentGame.correctAnswers = 0
+        currentGame.incorrectAnswers = 0
+        currentGame.currentScore = 0
+        currentGame.currentStreak = 0
+        currentGame.gameStartTime = 0
+        currentGame.gameEndTime = 0
+        currentGame.questionDatas = [] as any
+        currentGame.currentQuestion = -1
+        currentGame.gameEndTime = Date.now()
+        this.currentGame = currentGame
+      }
+    },
+    setToggleMode(mode: PlayerPreferences["mode"]) {
+      this.toggleMode = mode;
+    },
+    setToggleDifficulty(difficulty: PlayerPreferences["difficulty"]) {
+      this.toggleDifficulty = difficulty;
+    },
     setPlayerData(playerData: PlayerStats) {
       this.playerData = playerData;
     },
@@ -51,13 +76,16 @@ export const useSessionStore = defineStore('session-store', {
 
           if (currentGame.bStarted === false) {
             console.log("Starting Game... First Question Down!!")
+            currentGame.gameStartTime = Date.now()
             currentGame.bStarted = true
-
           }
 
           currentGame.currentQuestion += 1;
         } else {
+          console.log("Game Completed!!")
           currentGame.bCompleted = true
+          currentGame.currentQuestion = -1
+          currentGame.gameEndTime = Date.now()
 
         }
 
