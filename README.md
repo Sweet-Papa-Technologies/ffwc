@@ -7,7 +7,13 @@ https://sweetpapatechnologies.atlassian.net/wiki/spaces/FWC/pages/90308862/Produ
 ## To-Do:
 - [X] Create Requirements Document
 - [ ] Create Design Documents
+  - [ ] Scoring System
+  - [ ] Screen List
+  - [ ] TypeScript Interfaces
+- [ ] Create Game Data
+  - [ ] Questions JSON Database    
 - [ ] Create Background Music for Game
+- [ ] Create Logo for Game
 - [ ] Create / Collect Visual Assets for Game
 - [ ] Setup Firebase / Authentication
 - [ ] Develop Game w/ Quasar and Phaser3
