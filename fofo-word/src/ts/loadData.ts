@@ -1,7 +1,8 @@
-import { PlayerPreferences, PlayerStats, WordChallenge, diffSettings, modes, userData, currentGameSession, GameCategory, gameCats } from './models';
+import { PlayerPreferences, PlayerStats, WordChallenge, diffSettings, modes, userData, currentGameSession, GameCategory, gameCats, userDBObject } from './models';
 import { useSessionStore } from 'src/stores/session-store';
 import { PlayerStatas, userDatas, playerPrefs } from 'app/game_data/dummyUserData';
 import { bible_questions, word_questions } from 'app/game_data/questions';
+import { getUserDataFromFirestore, saveUserDataToFirestore } from './firebaseAPIs';
 
 const store = useSessionStore();
 
@@ -16,28 +17,63 @@ export const loadPlayData = async (): Promise<PlayerStats> => {
   // TODO=> Load game data from the server
   const playerDatas = PlayerStatas
 
+  // Check to see if settings have been saved to the Server and we should use those instead
+  const remoteData = await getUserDataFromFirestore() as userDBObject | null
+  if (remoteData) {
+    playerDatas.highestScore = remoteData.playerStats.highestScore
+    playerDatas.longestStreak = remoteData.playerStats.longestStreak
+    playerDatas.modePreference = remoteData.playerStats.modePreference
 
-  if (store.userData) {
-    playerDatas.userData = store.userData
+  } else {
+    if (store.$state.userData) {
+
+      playerDatas.userData = store.$state.userData
+    }
   }
 
-  const prefs = await loadPlayerPrefsFromServer()
+
+  const prefs = await loadPlayerPrefsFromServer(remoteData)
 
   store.setPlayerData(playerDatas)
   store.setPlayerPres(prefs)
 
+  // Save Data back to the Server
+  await saveUserDataToFirestore({playerStats: playerDatas, playerPreferences: prefs})
+
   return playerDatas;
 }
 
+export const savePlayData = async (): Promise<void> => {
+  // Save Data back to the Server
+  // await loadPlayData()
+  const playerData = store.$state.playerData
+  const playerPrefs = store.$state.prefs
 
-export const loadPlayerPrefsFromServer = async ():Promise<PlayerPreferences> => {
+  if (!playerData || !playerPrefs) {
+    return
+  }
+  console.log("Saving Player Data to Server")
+  console.log(playerData, playerPrefs)
+  await saveUserDataToFirestore({playerStats: playerData, playerPreferences: playerPrefs})
+}
+
+
+export const loadPlayerPrefsFromServer = async (existingData:null|userDBObject):Promise<PlayerPreferences> => {
   // TODO=> Load game data from the server
-  const prefs = playerPrefs
+  let prefs = playerPrefs
 
+  // Check to see if settings have been saved to the Server and we should use those instead
+  if (existingData) {
+    prefs.difficulty = existingData.playerPreferences.difficulty
+    prefs.mode = existingData.playerPreferences.mode
+    prefs.soundEnabled = existingData.playerPreferences.soundEnabled
+    prefs.musicEnabled = existingData.playerPreferences.musicEnabled
+  } else {
   // Set Toggle Mode and Difficulty
-  if (store.$state.toggleDifficulty && store.$state.toggleMode) {
-    prefs.mode = store.$state.toggleMode
-    prefs.difficulty = store.$state.toggleDifficulty
+    if (store.$state.toggleDifficulty && store.$state.toggleMode) {
+      prefs.mode = store.$state.toggleMode
+      prefs.difficulty = store.$state.toggleDifficulty
+    }
   }
 
   console.log(prefs)

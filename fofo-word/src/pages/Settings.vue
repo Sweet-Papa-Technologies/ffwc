@@ -41,19 +41,36 @@
 import {  diffSettings, modes } from 'src/ts/models';
 import { defineComponent, ref } from 'vue';
 import { useSessionStore } from 'src/stores/session-store';
+import { savePlayData } from 'src/ts/loadData';
 const store = useSessionStore();
 export default defineComponent({
   name: 'settings',
   methods: {
-    backToMainMenu() {
+    async backToMainMenu() {
         // Navigate to the main menu screen
         this.setMode()
         this.setDifficulty()
+        store.setPlayerPres({
+          mode: this.selectedMode,
+          difficulty: this.selectedDifficulty,
+          musicEnabled: store.$state.prefs?.musicEnabled || true,
+          soundEnabled: store.$state.prefs?.soundEnabled || true,
+      })
+
+      store.setPlayerData({
+        "highestScore": store.$state.playerData?.highestScore || 0,
+        "longestStreak": store.$state.playerData?.longestStreak || 0,
+        "userData" : store.$state.playerData?.userData || {} as any,
+        "modePreference" : this.selectedDifficulty,
+      })
+
+        await savePlayData()
         this.$router.push('/');
     },
     setMode() {
       // Navigate to the game screen
       store.setToggleMode(this.selectedMode);
+
 
     },
     setDifficulty() {

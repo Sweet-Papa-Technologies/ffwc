@@ -5,11 +5,15 @@ export interface WordChallenge {
   options: string[];  // Array of answer choices
   correctAnswer: number; // Index of the correct choice in the 'options' array
 }
+export interface userDBObject {
+  playerStats: PlayerStats;
+  playerPreferences: PlayerPreferences;
+}
 
 export interface PlayerStats {
   highestScore: number;
   longestStreak: number;
-  modePreference: string;
+  modePreference: diffSettings;
   userData: userData;
 }
 
