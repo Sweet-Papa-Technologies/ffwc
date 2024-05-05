@@ -1,6 +1,6 @@
 <template>
   <q-dialog v-model="bShow" persistent>
-    <q-card class="q-mb-md">
+    <q-card class="q-mb-md" style="min-height: 355px;">
       <q-card-section>
         <q-banner
           inline
@@ -32,14 +32,14 @@
 </div>
 </div>
 
-<q-scroll-area class="q-mt-md" style="height: 30vh;">
+<q-scroll-area class="q-mt-md" style="height: 215px;">
           <q-card-section>
             <div class="text-h6">Correct Answers: {{ correctAnswers }} / {{ totalQuestions }}</div>
           </q-card-section>
 
           <q-card-section>
             <div class="text-subtitle1">
-              Total Time: {{ (timeBonusEval / 1000).toFixed(2) }} sec
+              Total Time: {{ (((timeStart || 0) - (timeEnd || 0)) / 1000).toFixed(2) }} sec
             </div>
             <div class="text-subtitle1">Time Bonus: {{ timeBonusPts }}</div>
             <div class="text-subtitle1">Original Score: {{ originalScore }}</div>
@@ -47,17 +47,18 @@
           </q-card-section>
         </q-scroll-area>
         </q-banner>
-      </q-card-section>
 
-      <q-card-section class="row justify-center ">
+
+      <div class="row justify-center ">
         <q-btn color="primary" label="Exit" @click="$emit('done')" />
+      </div>
       </q-card-section>
     </q-card>
   </q-dialog>
 </template>
 
 <script lang="ts">
-import { defineComponent, computed } from "vue";
+import { defineComponent, computed, ref } from "vue";
 import { useSessionStore } from "../stores/session-store";
 
 export default defineComponent({
@@ -65,48 +66,69 @@ export default defineComponent({
     const store = useSessionStore();
     const totalQuestions = computed(() => store.$state.currentGame?.questionDatas.length);
     const correctAnswers = computed(() => store.$state.currentGame?.correctAnswers);
-    const timeBonusEval =
-      (computed(() => store.$state.currentGame?.gameEndTime).value || 0) -
-      (computed(() => store.$state.currentGame?.gameStartTime).value || 0);
+    const timeStart = computed(() => store.$state.currentGame?.gameEndTime)
+    const timeEnd = computed(() => store.$state.currentGame?.gameStartTime)
+    const timeBonusEval = ref((timeStart.value || 0) - (timeEnd.value || 0));
+    const originalScore = computed(() => store.$state.currentGame?.currentScore) || 0;
 
-    let timeBonusPts = 0;
+    let timeBonusPts = ref(0);
 
-    const secondsBonusArray = [1000, 30000, 45000, 60000, 120000];
+
+    const runCaluclations = () => {
+
+
+
+    console.log("timeBonusEval", timeBonusEval);
+
+    timeBonusPts = ref(0);
+
+    const secondsBonusArray = [15000, 30000, 45000, 60000, 120000];
 
     // IF user got more 70% wrong, no time bonus
-    if ((correctAnswers.value || 0) >= (totalQuestions.value || 0) * 0.3) {
-      switch (timeBonusEval > 0) {
-        case timeBonusEval < secondsBonusArray[0]:
-          timeBonusPts = 1000;
+    if ((correctAnswers.value || 0) >= ((totalQuestions.value || 0) * 0.3)) {
+      console.log("Time Bonus Applies!")
+      switch (timeBonusEval.value > 0) {
+        case timeBonusEval.value < secondsBonusArray[0]:
+          timeBonusPts.value = 1000;
           break;
-        case timeBonusEval < secondsBonusArray[1]:
-          timeBonusPts = 500;
+        case timeBonusEval.value < secondsBonusArray[1]:
+          timeBonusPts.value = 500;
           break;
-        case timeBonusEval < secondsBonusArray[2]:
-          timeBonusPts = 250;
+        case timeBonusEval.value < secondsBonusArray[2]:
+          timeBonusPts.value = 250;
           break;
-        case timeBonusEval < secondsBonusArray[3]:
-          timeBonusPts = 100;
+        case timeBonusEval.value < secondsBonusArray[3]:
+          timeBonusPts.value = 100;
           break;
-        case timeBonusEval < secondsBonusArray[4]:
-          timeBonusPts = 50;
+        case timeBonusEval.value < secondsBonusArray[4]:
+          timeBonusPts.value = 50;
           break;
         default:
-          timeBonusPts = 0;
+          timeBonusPts.value = 0;
       }
     }
 
-    const originalScore = computed(() => store.$state.currentGame?.currentScore) || 0;
 
+      console.log("Calculating...");
+    };
+
+    runCaluclations()
 
     return {
+      timeStart,
+      timeEnd,
       timeBonusEval,
       totalQuestions,
       correctAnswers,
       timeBonusPts,
       originalScore,
+      runCaluclations,
 
     };
+  },
+  beforeMount() {
+    console.log("Mounted");
+    this.runCaluclations()
   },
   name: "QuestionResultCard",
   props: {

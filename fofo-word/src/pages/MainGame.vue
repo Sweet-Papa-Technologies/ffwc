@@ -11,12 +11,13 @@
       :correct="bCorrect"
       :correctAnswer="correctAnswer"
       :bShow="bShowResult"
+      v-if="bShowResult === true"
       @next="
         bShowResult = false;
         nextQuestion();
       "
     />
-    <Complete :bShow="bShowFinalResults" @done="closingActions()" />
+    <Complete :bShow="bShowFinalResults" @done="closingActions()" v-if="bShowFinalResults==true" />
     <div
       class="q-pa-md"
       style="max-width: 700px; width: 100%"

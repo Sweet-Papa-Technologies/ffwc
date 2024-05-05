@@ -104,14 +104,17 @@ export const loadGameQuestionsForSession = async (mode:modes=null,difficulty:dif
       break;
   }
 
+  console.log(difficulty, questions.length)
+
   switch (difficulty) {
     case "Easy":
       maxQuestions = 5
+      break;
     case "Medium":
-      maxQuestions = 6
+      maxQuestions = 8
       break;
     case "Hard":
-      maxQuestions = 7
+      maxQuestions = 10
       break;
     default:
       maxQuestions = 5

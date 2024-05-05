@@ -419,6 +419,216 @@ export const word_questions = questions1.concat(questions2, questions3, question
 export const bible_questions = [
   {
     "category": "Biblical Mode",
+    "difficulty": "Easy",
+    "question": "In which city was Jesus born, as reported in the Gospel of Matthew?",
+    "options": ["Nazareth", "Jerusalem", "Bethlehem", "Capernaum"],
+    "correctAnswer": 2
+},
+{
+    "category": "Biblical Mode",
+    "difficulty": "Easy",
+    "question": "Who visited Jesus shortly after His birth, according to Matthew?",
+    "options": ["Shepherds", "Magi", "Priests", "Fishermen"],
+    "correctAnswer": 1
+},
+{
+    "category": "Biblical Mode",
+    "difficulty": "Easy",
+    "question": "What did Jesus do for 40 days and nights in the wilderness?",
+    "options": ["Prayed", "Fasted", "Preached", "Taught disciples"],
+    "correctAnswer": 1
+},
+{
+    "category": "Biblical Mode",
+    "difficulty": "Easy",
+    "question": "What does Jesus teach about in the 'Sermon on the Mount'?",
+    "options": ["Justice", "Love", "Blessings and ethics", "Miracles"],
+    "correctAnswer": 2
+},
+{
+    "category": "Biblical Mode",
+    "difficulty": "Easy",
+    "question": "Which of the following does Matthew include in his genealogy of Jesus?",
+    "options": ["Moses", "Rahab", "Samuel", "Elijah"],
+    "correctAnswer": 1
+},
+{
+    "category": "Biblical Mode",
+    "difficulty": "Easy",
+    "question": "Matthew refers to Jesus by which royal title?",
+    "options": ["Son of God", "Son of Man", "Son of David", "King of Israel"],
+    "correctAnswer": 2
+},
+{
+    "category": "Biblical Mode",
+    "difficulty": "Easy",
+    "question": "What major event does Matthew record that involves Peter and Jesus on a body of water?",
+    "options": ["Fishing miracle", "Walking on water", "Boat preaching", "Storm calming"],
+    "correctAnswer": 1
+},
+{
+    "category": "Biblical Mode",
+    "difficulty": "Easy",
+    "question": "What does Matthew emphasize as the reason for Jesus' arrest?",
+    "options": ["Theft", "Blasphemy", "Treason", "Murder"],
+    "correctAnswer": 1
+},
+{
+    "category": "Biblical Mode",
+    "difficulty": "Easy",
+    "question": "What unique event does Matthew record about Judas after betraying Jesus?",
+    "options": ["He fled to Rome", "He bought a field", "He returned the silver", "He became a high priest"],
+    "correctAnswer": 2
+},
+{
+    "category": "Biblical Mode",
+    "difficulty": "Easy",
+    "question": "According to Matthew, what miraculous sign accompanied Jesus' crucifixion?",
+    "options": ["An earthquake", "A comet", "A flood", "A fire from heaven"],
+    "correctAnswer": 0
+},
+  {
+    "category": "Biblical Mode",
+    "difficulty": "Medium",
+    "question": "What significant event does Matthew report that is unique to his Gospel concerning Jesus' early life?",
+    "options": ["His visit to the temple at age 12", "Flight into Egypt", "His baptism by John", "His first miracle in Cana"],
+    "correctAnswer": 1
+},
+{
+    "category": "Biblical Mode",
+    "difficulty": "Medium",
+    "question": "Matthew's Gospel includes ten parables not found in other Gospels. Which of these is unique to Matthew?",
+    "options": ["The Good Samaritan", "The Lost Sheep", "The Workers in the Vineyard", "The Rich Fool"],
+    "correctAnswer": 2
+},
+{
+    "category": "Biblical Mode",
+    "difficulty": "Medium",
+    "question": "What aspect of society does Matthew particularly emphasize through Jesus' teachings?",
+    "options": ["Military power", "Economic inequality", "Judicial fairness", "Religious hypocrisy"],
+    "correctAnswer": 3
+},
+{
+    "category": "Biblical Mode",
+    "difficulty": "Medium",
+    "question": "Which attribute does Matthew attribute to Jesus that signifies his authority and divine role?",
+    "options": ["King of Kings", "Son of Man", "Light of the World", "Prince of Peace"],
+    "correctAnswer": 1
+},
+{
+    "category": "Biblical Mode",
+    "difficulty": "Medium",
+    "question": "Matthew begins his Gospel by highlighting Jesus' lineage from which two key biblical figures?",
+    "options": ["Moses and Aaron", "Abraham and David", "Jacob and Joseph", "Isaac and Ishmael"],
+    "correctAnswer": 1
+},
+{
+    "category": "Biblical Mode",
+    "difficulty": "Medium",
+    "question": "In Matthew, Jesus' teachings often focus on the importance of what?",
+    "options": ["Keeping the Sabbath", "Prayer and fasting", "Following the law", "Internal purity"],
+    "correctAnswer": 3
+},
+{
+    "category": "Biblical Mode",
+    "difficulty": "Medium",
+    "question": "Matthew concludes his Gospel with which significant command from Jesus?",
+    "options": ["The Great Commission", "The Golden Rule", "The New Commandment", "The Beatitudes"],
+    "correctAnswer": 0
+},
+{
+    "category": "Biblical Mode",
+    "difficulty": "Medium",
+    "question": "According to Matthew, what role does John the Baptist play in relation to Jesus?",
+    "options": ["He baptizes Jesus", "He predicts Jesus' death", "He denies Jesus", "He betrays Jesus"],
+    "correctAnswer": 0
+},
+{
+    "category": "Biblical Mode",
+    "difficulty": "Medium",
+    "question": "Matthew describes a sermon where Jesus outlines the ethics of the Kingdom. What is this sermon commonly called?",
+    "options": ["Sermon on the Mount", "Sermon by the Sea", "Olivet Discourse", "Jerusalem Declaration"],
+    "correctAnswer": 0
+},
+{
+    "category": "Biblical Mode",
+    "difficulty": "Medium",
+    "question": "What unique narrative technique does Matthew use to connect Jesus' actions and teachings with Jewish prophecy?",
+    "options": ["Genealogies", "Miracle stories", "Fulfillment citations", "Apostolic speeches"],
+    "correctAnswer": 2
+},
+  {
+    "category": "Biblical Mode",
+    "difficulty": "Hard",
+    "question": "Which Old Testament prophecy does Matthew frequently cite to establish Jesus' messianic role?",
+    "options": ["Isaiah's prophecies", "Jeremiah's prophecies", "Daniel's prophecies", "Micah's prophecies"],
+    "correctAnswer": 0
+},
+{
+    "category": "Biblical Mode",
+    "difficulty": "Hard",
+    "question": "Matthew's use of the term 'Kingdom of Heaven' is unique compared to other Gospels. How many times does he use this term?",
+    "options": ["More than 30 times", "More than 50 times", "More than 70 times", "More than 100 times"],
+    "correctAnswer": 1
+},
+{
+    "category": "Biblical Mode",
+    "difficulty": "Hard",
+    "question": "Which tax-related event does Matthew uniquely report in his Gospel?",
+    "options": ["Tax payment with a fish", "Tax collection by Levi", "Jesus teaching about taxes", "Parable involving tax collectors"],
+    "correctAnswer": 0
+},
+{
+    "category": "Biblical Mode",
+    "difficulty": "Hard",
+    "question": "Matthew provides unique parables not found in other Gospels. Which of these is a unique parable in Matthew?",
+    "options": ["The Prodigal Son", "The Unforgiving Servant", "The Good Samaritan", "The Rich Man and Lazarus"],
+    "correctAnswer": 1
+},
+{
+    "category": "Biblical Mode",
+    "difficulty": "Hard",
+    "question": "Matthew emphasizes Jesus' insistence on what trait over sacrifice?",
+    "options": ["Obedience", "Mercy", "Faith", "Justice"],
+    "correctAnswer": 1
+},
+{
+    "category": "Biblical Mode",
+    "difficulty": "Hard",
+    "question": "What percentage of Matthew’s Gospel account is not found in any other Gospel?",
+    "options": ["About 20%", "About 30%", "About 40%", "About 50%"],
+    "correctAnswer": 2
+},
+{
+    "category": "Biblical Mode",
+    "difficulty": "Hard",
+    "question": "Matthew mentions an unusual miracle about Jesus dealing with what?",
+    "options": ["Turning water into wine", "Walking on water", "Tax coin in fish's mouth", "Feeding 5000 with five loaves"],
+    "correctAnswer": 2
+},
+{
+    "category": "Biblical Mode",
+    "difficulty": "Hard",
+    "question": "In which chapters does Matthew depart from the chronological sequence to focus on the theme of the Kingdom?",
+    "options": ["Chapters 1-18", "Chapters 5-15", "Chapters 1-5", "Chapters 10-20"],
+    "correctAnswer": 0
+},
+{
+    "category": "Biblical Mode",
+    "difficulty": "Hard",
+    "question": "Matthew records how many discourses of Jesus that structure his teaching?",
+    "options": ["Three discourses", "Four discourses", "Five discourses", "Six discourses"],
+    "correctAnswer": 2
+},
+{
+    "category": "Biblical Mode",
+    "difficulty": "Hard",
+    "question": "What key aspect of Jesus’ genealogy does Matthew emphasize to relate to his Jewish audience?",
+    "options": ["His descent from Abraham", "His descent from David", "His descent from Moses", "His descent from Solomon"],
+    "correctAnswer": 1
+},
+  {
+    "category": "Biblical Mode",
     "difficulty": "Hard",
     "question": "Matthew quotes from which Old Testament book to show Jesus as the fulfillment of prophecy?",
     "options": ["Isaiah", "Daniel", "Jeremiah", "Micah"],
